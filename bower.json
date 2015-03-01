@@ -1,0 +1,25 @@
+{
+  "name": "orderly",
+  "version": "0.0.0",
+  "authors": [
+    "Foster Hersey <foster.hersey@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "webcomponentsjs": "~0.5.5",
+    "polymer": "~0.5.5",
+    "core-ajax": "Polymer/core-ajax#~0.5.5",
+    "core-list": "Polymer/core-list#~0.5.5",
+    "core-scaffold": "Polymer/core-scaffold#~0.5.5",
+    "core-menu": "Polymer/core-menu#~0.5.5",
+    "core-item": "Polymer/core-item#~0.5.5"
+  }
+}

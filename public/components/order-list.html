@@ -1,0 +1,19 @@
+<link rel="import" href="../lib/core-ajax/core-ajax.html">
+<link rel="import" href="../lib/core-list/core-list.html">
+
+<polymer-element name="order-list" noscript>
+    <template>
+        <style>
+            core-list {
+                height: 100%;
+            }
+        </style>
+        <core-ajax id="ajax" auto url="/api/orders" handleAs="json" response="{{orders}}"></core-ajax>
+        <core-list data="{{orders}}">
+            <template>
+                <div class="item">{{ model.t }}</div>
+            </template>
+        </core-list>
+    </template>
+</polymer-element>
+
