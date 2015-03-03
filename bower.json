@@ -20,6 +20,10 @@
     "core-list": "Polymer/core-list#~0.5.5",
     "core-scaffold": "Polymer/core-scaffold#~0.5.5",
     "core-menu": "Polymer/core-menu#~0.5.5",
-    "core-item": "Polymer/core-item#~0.5.5"
+    "core-item": "Polymer/core-item#~0.5.5",
+    "core-pages": "Polymer/core-pages#~0.5.5",
+    "page": "~1.6.1",
+    "core-icons": "Polymer/core-icons#~0.5.5",
+    "core-icon-button": "Polymer/core-icon-button#~0.5.5"
   }
 }

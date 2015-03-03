@@ -1,0 +1,28 @@
+<link rel="import" href="../lib/core-ajax/core-ajax.html">
+<link rel="import" href="../lib/core-icons/core-icons.html">
+<link rel="import" href="../lib/core-icon-button/core-icon-button.html">
+
+<polymer-element name="order-details" attributes="orderId">
+    <template>
+        <style>
+            :host {
+                display: block;
+                height: 100%;
+            }
+            core-list {
+                height: 100%;
+            }
+        </style>
+        <core-ajax id="ajax" auto url="/api/orders/{{orderId}}" handleAs="json" response="{{order}}"></core-ajax>
+        <core-icon-button id="btnBack" icon="arrow-back" on-click="{{goBack}}"></core-icon-button>
+        {{ order.t }}
+    </template>
+    <script>
+        Polymer('order-details', {
+            goBack: function onReady (e) {
+                page('/');
+                e.preventDefault();
+            }
+        });
+    </script>
+</polymer-element>

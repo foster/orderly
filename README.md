@@ -1,1 +1,1 @@
-Orderly: An expiriment with Web Components.
+Orderly: An experiment with Web Components.
