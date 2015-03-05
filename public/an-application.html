@@ -1,0 +1,44 @@
+<link rel="import" href="lib/polymer/polymer.html">
+<link rel="import" href="pages/order-list-page.html">
+<link rel="import" href="pages/order-details-page.html">
+<script src="lib/page/page.js"></script>
+
+<polymer-element name="an-application" notap attributes="derr">
+    <template>
+        <style>
+            :host {
+                display: flex;
+                flex: 1;
+            }
+        </style>
+        <core-ajax id="ajax" auto url="/api/orders" handleAs="json" response="{{orders}}"></core-ajax>
+        <order-list-page id="list" list="{{orders}}" hidden></order-list-page>
+        <order-details-page id="deets" orderId hidden></order-details>
+    </template>
+    <script>
+        Polymer('an-application', {
+            ready: function appReady () {                
+                var listEl = this.$.list,
+                    detailsEl = this.$.deets;
+
+                // establish routes
+                page('/', function enterIndex (_, next) {
+                    listEl.removeAttribute('hidden');
+                });
+                page.exit('/', function exitIndex (_, next) {
+                    listEl.setAttribute('hidden', '');
+                    next();
+                });
+                page('/:id', function enterDetails (ctx, next) {
+                    detailsEl.removeAttribute('hidden');
+                    detailsEl.orderId = ctx.params.id;
+                });
+                page.exit('/:id', function exitOrderDetails (_, next) {
+                    detailsEl.setAttribute('hidden', '');
+                    next();
+                });
+                page();
+            }
+        });
+    </script>
+</polymer-element>

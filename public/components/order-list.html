@@ -1,7 +1,7 @@
 <link rel="import" href="../lib/core-ajax/core-ajax.html">
 <link rel="import" href="../lib/core-list/core-list.html">
 
-<polymer-element name="order-list" noscript>
+<polymer-element name="order-list" attributes="data">
     <template>
         <style>
             :host {
@@ -12,11 +12,21 @@
                 height: 100%;
             }
         </style>
-        <core-ajax id="ajax" auto url="/api/orders" handleAs="json" response="{{orders}}"></core-ajax>
-        <core-list data="{{orders}}">
+        <core-list data="{{data}}" on-core-activate="{{goOrder}}">
             <template>
                 <div class="item">{{ model.t }}</div>
             </template>
         </core-list>
     </template>
+    <script>
+        Polymer('order-list', {
+            goOrder: function goOrder (e) {
+                e.preventDefault();
+                page('/' + e.detail.data.id);
+            },
+            dataChanged: function () {
+                console.log(arguments[1]);
+            }
+        })
+    </script>
 </polymer-element>

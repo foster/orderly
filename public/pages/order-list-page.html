@@ -1,0 +1,21 @@
+<link rel="import" href="../lib/polymer/polymer.html">
+<link rel="import" href="../lib/core-header-panel/core-header-panel.html">
+<link rel="import" href="../lib/core-toolbar/core-toolbar.html">
+<link rel="import" href="../components/order-list.html">
+
+<polymer-element name="order-list-page" attributes="list" noscript>
+    <template>
+        <style>
+            :host {
+                display: flex;
+                flex: 1;
+            }
+        </style>
+        <core-header-panel flex>
+            <core-toolbar>Disorderly</core-toolbar>
+            <div class="content" fit>
+                <order-list data="{{list}}"></order-list>
+            </div>
+        </core-header-panel>
+    </template>
+</polymer-element>

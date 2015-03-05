@@ -13,12 +13,18 @@
                 height: 100%;
             }
         </style>
-        <core-ajax id="ajax" auto url="/api/orders/{{orderId}}" handleAs="json" response="{{order}}"></core-ajax>
+        <core-ajax id="ajax" url="/api/orders/{{orderId}}" handleAs="json" response="{{order}}"></core-ajax>
         <core-icon-button id="btnBack" icon="arrow-back" on-click="{{goBack}}"></core-icon-button>
         {{ order.t }}
     </template>
     <script>
         Polymer('order-details', {
+            ready: function () {
+
+            },
+            orderIdChanged: function (_, newValue) {
+                if (newValue) this.$.ajax.go();
+            },
             goBack: function onReady (e) {
                 page('/');
                 e.preventDefault();

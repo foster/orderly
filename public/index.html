@@ -2,59 +2,15 @@
 <html>
 <head>
     <script src="lib/webcomponentsjs/webcomponents.js"></script>
-    <script src="lib/page/page.js"></script>
-    <link rel="import" href="lib/polymer/polymer.html">
-    <link rel="import" href="lib/core-header-panel/core-header-panel.html">
-    <link rel="import" href="lib/core-toolbar/core-toolbar.html">
-    <link rel="import" href="lib/core-pages/core-pages.html">
-    <link rel="import" href="components/order-list.html">
-    <link rel="import" href="components/order-details.html">
+    <link rel="import" href="an-application.html">
+
     <style>
-        .content {
-            padding: 8px;
-        }
-        core-pages {
-            height: 100%;
+        body[unresolved] {
+            visibility: hidden;
         }
     </style>
 </head>
-<body fullbleed vertical layout>
-    <core-header-panel flex>
-        <core-toolbar>Disorderly</core-toolbar>
-        <div class="content" fit>
-            <core-pages selected="0">
-                <section>
-                    <order-list></order-list>
-                </section>
-                <section>
-                    <order-details orderId="0"></order-details>
-                </section>
-            </core-pages>
-        </div>
-    </core-header>
-
-    <script>
-        document.addEventListener('polymer-ready', function() {
-            var pagesEl = document.querySelector('core-pages'),
-                listEl = document.querySelector('order-list'),
-                detailsEl = document.querySelector('order-details');
-
-            // listen for clicks on the list
-            listEl.addEventListener('core-activate', function onItemSelect (e) {
-                page('/' + e.detail.data.id)
-                e.preventDefault();
-            });
-
-            // establish routes
-            page('/', function index () {
-                pagesEl.selected = 0;
-            });
-            page('/:id', function orderDetails (ctx) {
-                pagesEl.selected = 1;
-                detailsEl.orderId = ctx.params.id;
-            });
-            page();
-        });
-    </script>
+<body fullbleed vertical layout unresolved>
+    <an-application></an-application>
 </body>
 </head>
