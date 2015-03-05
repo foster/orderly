@@ -1,5 +1,6 @@
 <link rel="import" href="../lib/core-ajax/core-ajax.html">
 <link rel="import" href="../lib/core-list/core-list.html">
+<link rel="import" href="../lib/core-resizable/core-resizable.html">
 
 <polymer-element name="order-list" attributes="data">
     <template>
@@ -19,7 +20,13 @@
         </core-list>
     </template>
     <script>
-        Polymer('order-list', {
+        Polymer('order-list', Polymer.mixin({
+            attached: function () {
+                this.resizerAttachedHandler();
+            },
+            detached: function () {
+                this.resizerDetachedHandler();
+            },
             goOrder: function goOrder (e) {
                 e.preventDefault();
                 page('/' + e.detail.data.id);
@@ -27,6 +34,6 @@
             dataChanged: function () {
                 console.log(arguments[1]);
             }
-        })
+        }, Polymer.CoreResizer));
     </script>
 </polymer-element>

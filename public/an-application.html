@@ -10,10 +10,13 @@
                 display: flex;
                 flex: 1;
             }
+            *[ishidden] {
+                display: none;
+            }
         </style>
         <core-ajax id="ajax" auto url="/api/orders" handleAs="json" response="{{orders}}"></core-ajax>
-        <order-list-page id="list" list="{{orders}}" hidden></order-list-page>
-        <order-details-page id="deets" orderId hidden></order-details>
+        <order-list-page id="list" list="{{orders}}" ishidden></order-list-page>
+        <order-details-page id="deets" orderId ishidden></order-details>
     </template>
     <script>
         Polymer('an-application', {
@@ -23,18 +26,18 @@
 
                 // establish routes
                 page('/', function enterIndex (_, next) {
-                    listEl.removeAttribute('hidden');
+                    listEl.removeAttribute('ishidden');
                 });
                 page.exit('/', function exitIndex (_, next) {
-                    listEl.setAttribute('hidden', '');
+                    listEl.setAttribute('ishidden', '');
                     next();
                 });
                 page('/:id', function enterDetails (ctx, next) {
-                    detailsEl.removeAttribute('hidden');
+                    detailsEl.removeAttribute('ishidden');
                     detailsEl.orderId = ctx.params.id;
                 });
                 page.exit('/:id', function exitOrderDetails (_, next) {
-                    detailsEl.setAttribute('hidden', '');
+                    detailsEl.setAttribute('ishidden', '');
                     next();
                 });
                 page();

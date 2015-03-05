@@ -2,13 +2,17 @@
 <link rel="import" href="../lib/core-header-panel/core-header-panel.html">
 <link rel="import" href="../lib/core-toolbar/core-toolbar.html">
 <link rel="import" href="../components/order-list.html">
+<link rel="import" href="../lib/core-resizable/core-resizable.html">
 
-<polymer-element name="order-list-page" attributes="list" noscript>
+<polymer-element name="order-list-page" attributes="list ishidden">
     <template>
         <style>
             :host {
                 display: flex;
                 flex: 1;
+            }
+            .content {
+                padding: 6px;
             }
         </style>
         <core-header-panel flex>
@@ -18,4 +22,18 @@
             </div>
         </core-header-panel>
     </template>
+    <script>
+        Polymer('order-list-page', Polymer.mixin({
+            attached: function () {
+                this.resizerAttachedHandler();
+            },
+            detached: function () {
+                this.resizerDetachedHandler();
+            },
+            ishiddenChanged: function (_, newValue) {
+                if (newValue == null) this.notifyResize();
+            }
+
+        }, Polymer.CoreResizer));
+    </script>
 </polymer-element>
